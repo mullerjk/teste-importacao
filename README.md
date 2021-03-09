@@ -105,7 +105,6 @@ Basta colocar 0 em todos os campos de texto de desmarcar as caixas de opção.
 ```
 
 
-
 #### Importando o Banco de Dados
 
 A importação do Banco de Dados serve também para simular que já foram importadas todas as imagens.
@@ -115,6 +114,14 @@ A importação do Banco de Dados serve também para simular que já foram import
 Execute o arquivo /sql/local.sql no seu banco de dados MySQL.
 
 ```
+#### Obs.
+
+Para realizar a importação "manualmente", edite os endereços a seguir com seu domínio e cole
+no navegador.
+
+-   meu.site/wp-create-albums.php
+-   meu.site/wp-create-posts.php
+-   meu.site/wp-create-photos.php
 
 ---
 
