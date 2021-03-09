@@ -715,8 +715,6 @@ function custom_post_type()
 add_action('init', 'custom_post_type');
 add_action('wp', 'check_remote_posts');
 add_action('wp', 'check_remote_albums');
-//add_action('wp', 'check_remote_photos');
-
 
 /*
 	==========================================
@@ -734,8 +732,6 @@ function check_remote_albums()
 		$responseBody = wp_remote_retrieve_body($response);
 		$result = json_decode($responseBody);
 		if (is_array($result) && !is_wp_error($result)) {
-			$header = $result["headers"];
-			$body = $result["body"];
 			foreach ($result as $result_remote) {
 				$album_id = $result_remote->id;
 				$album_user_id = $result_remote->userId;
@@ -749,8 +745,6 @@ function check_remote_albums()
 				);
 				$album_wp = get_posts($args);
 				if ($album_wp == null) {
-					//if album not found
-					//Buscar fotos aqui
 					$my_album = array(
 						'post_title'  => $album_title,
 						'post_type' => $post_type,
@@ -765,8 +759,6 @@ function check_remote_albums()
 					$album_inserted = wp_insert_post($my_album);
 				} else {
 					continue;
-					//echo 'Album'.$album_id.'já existe<pre>';
-					//print_r($album_wp);
 				}
 			}
 		}
@@ -788,8 +780,6 @@ function check_remote_posts()
 		$responseBody = wp_remote_retrieve_body($response);
 		$result = json_decode($responseBody);
 		if (is_array($result) && !is_wp_error($result)) {
-			$header = $result["headers"];
-			$body = $result["body"];
 			foreach ($result as $result_remote) {
 				$remote_post_id = $result_remote->id;
 				$remote_post_user_id = $result_remote->userId;
@@ -804,8 +794,6 @@ function check_remote_posts()
 				);
 				$album_wp = get_posts($args);
 				if ($album_wp == null) {
-					//if album not found
-					//Buscar fotos aqui
 					$my_post = array(
 						'post_title'  => $remote_post_title,
 						'post_type' => $post_type,
@@ -833,6 +821,20 @@ function check_remote_posts()
 	 Getting Photos 
 	==========================================
 */
+
+function svd_deactivate() {
+    wp_clear_scheduled_hook( 'svd_cron' );
+}
+ 
+add_action('init', function() {
+    add_action( 'svd_cron', 'check_remote_photos' );
+    register_deactivation_hook( __FILE__, 'svd_deactivate' );
+ 
+    if (! wp_next_scheduled ( 'svd_cron' )) {
+        wp_schedule_event( time(), 'daily', 'svd_cron' );
+    }
+});
+
 function check_remote_photos()
 {
 	$current_user = wp_get_current_user();
@@ -844,8 +846,6 @@ function check_remote_photos()
 		$responseBody = wp_remote_retrieve_body($response);
 		$result = json_decode($responseBody);
 		if (is_array($result) && !is_wp_error($result)) {
-			$header = $result["headers"];
-			$body = $result["body"];
 			foreach ($result as $result_remote) {
 				$album_id = $result_remote->albumId;
 				$photo_id = $result_remote->id;
@@ -853,8 +853,17 @@ function check_remote_photos()
 				$photo_url = $result_remote->url;
 				$photo_thumb = $result_remote->thumbnailUrl;
 
-				// $album_id = 9;
-				//resgatarid do post album
+				$post_type = "attachment";
+				$photo_args = array(
+					'meta_key'   => 'photo_id',
+					'meta_value' => $photo_id,
+					'post_type' => $post_type
+				);
+				$photo_wp = get_posts($photo_args);
+				if ($photo_wp != null) {
+					continue;
+				} else {
+
 				$album_args = array(
 					'meta_key'   => 'album_id',
 					'meta_value' => $album_id,
@@ -864,17 +873,6 @@ function check_remote_photos()
 				foreach ($album_wp as $album) {
 					$album_wp_id = $album->ID;
 				}
-				$post_status = "publish";
-				$post_type = "attachment";
-				//check if has photo
-				$photo_args = array(
-					'meta_key'   => 'photo_id',
-					'meta_value' => $photo_id,
-					'post_type' => $post_type
-				);
-				$photo_wp = get_posts($photo_args);
-				if ($photo_wp == null) {
-
 					/* IMG */
 					if ($photo_url == !NULL) :
 						include_once(ABSPATH . 'wp-admin/includes/image.php');
