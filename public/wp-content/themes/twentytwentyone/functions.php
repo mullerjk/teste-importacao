@@ -821,7 +821,7 @@ function check_remote_posts()
 	==========================================
 */
 function check_remote_photos()
-{/*
+{
 	$current_user = wp_get_current_user();
 	if (0 == $current_user->ID) {
 		// Not logged in.
@@ -862,7 +862,7 @@ function check_remote_photos()
 				$photo_wp = get_posts($photo_args);
 				if ($photo_wp == null) {
 
-					/* IMG *
+					/* IMG */
 					if ($photo_url == !NULL) :
 						include_once(ABSPATH . 'wp-admin/includes/image.php');
 						$imageurl = $photo_url;
@@ -902,7 +902,7 @@ function check_remote_photos()
 						wp_update_attachment_metadata($attach_id, $attach_data);
 						set_post_thumbnail($album_wp_id, $attach_id);
 					endif;
-					/* THUMB *
+					/* THUMB */
 					if ($photo_thumb == !NULL) :
 						include_once(ABSPATH . 'wp-admin/includes/image.php');
 						$imageurl = $photo_thumb;
@@ -943,10 +943,10 @@ function check_remote_photos()
 						set_post_thumbnail($album_wp_id, $attach_id);
 					endif;
 
-					/* THUMB *
+					/* THUMB */
 				} // end if
 			}
 		}
 	}
-	wp_reset_postdata();*/
+	wp_reset_postdata();
 }
