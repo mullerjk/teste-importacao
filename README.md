@@ -139,9 +139,9 @@ As seguintes ferramentas foram utilizadas neste projeto:
 
 #### **Tecnologias**  
 
--   **[PHP](https://www.php.net/docs.php)
--   **[MySQL](https://dev.mysql.com/doc/)
--   **[GitHub](https://docs.github.com/en/)
+-   **[PHP](https://www.php.net/docs.php)**
+-   **[MySQL](https://dev.mysql.com/doc/)**
+-   **[GitHub](https://docs.github.com/en/)**
 
 
 #### **Endpoints**  
