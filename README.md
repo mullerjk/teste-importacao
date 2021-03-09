@@ -146,10 +146,9 @@ As seguintes ferramentas foram utilizadas neste projeto:
 
 #### **Endpoints**  
 
--   **[Wordpress](https://wordpress.org/download/)**
--   **[Local](https://localwp.com/)**
--   **[Sequel Pro](https://sequelpro.com/download)**
--   **[GitHub](https://docs.github.com/pt)**
+-   **[Posts](https://jsonplaceholder.typicode.com/posts)**
+-   **[Álbuns](https://jsonplaceholder.typicode.com/albums)**
+-   **[Fotos](https://jsonplaceholder.typicode.com/photos/)**
 
 
 ---
