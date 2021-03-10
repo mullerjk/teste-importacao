@@ -77,11 +77,12 @@ Antes de começar, é preciso verificar se estamos em compatibilidade:
 Para a solução do teste, foi utilizada uma versão "vanilla" do Wordpress.
 [Wordpress] (https://wordpress.org/download/).
 Após a instalação é importante checar se os links permanentes estão configurados
-para o padão numérico.
+para o padão numérico, após, poderá verificar os albuns em forma de arquivo.
 
 ```bash
 
 meu.site/wp-admin/options-permalink.php
+meu.site/archives/album/
 
 ```
 
