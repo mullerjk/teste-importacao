@@ -50,9 +50,13 @@ Mas pode ser executada simplesmente deixando uma janela aberta, rodando a import
 - [x] Importação de Álbuns via API
 - [x] Importação de Fotos via API
    - [x] Configuração de Imagens Destacadas
-     - Performance
-     - Segurança
-     - Design
+
+🛑 Não foi abordado neste projeto:
+```Deprecated
+-Performance
+-Segurança
+-Design
+``` 
 
 ---
 
