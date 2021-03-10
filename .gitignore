@@ -16,4 +16,9 @@
 !/public/wp-content/themes/twentytwentyone/functions.php
 !/public/wp-content/themes/twentytwentyone/archive.php
 !/public/wp-content/themes/twentytwentyone/single.php
+!/public/wp-content/themes/twentytwentyone/template-parts/
+/public/wp-content/themes/twentytwentyone/template-parts/*
 !/public/wp-content/themes/twentytwentyone/template-parts/single.php
+!/public/wp-content/themes/twentytwentyone/template-parts/content/
+/public/wp-content/themes/twentytwentyone/template-parts/content/*
+!/public/wp-content/themes/twentytwentyone/template-parts/content/content-single.php
